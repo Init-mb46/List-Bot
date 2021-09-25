@@ -11,20 +11,23 @@ module.exports = {
     },
     async execute(msg, args) {
         const em = new MessageEmbed()
-        
+            .setTitle("Delte List");
         if (args.length < 1) {
-            return message.channel.send({embeds: [em
-                .setTitle("Delete List")
+            return msg.channel.send({embeds: [em
                 .setDescription("Please enter the name of the list you would like to delete")
                 .setColor("DARK_BUT_NOT_BLACK")
             ]});
+        } else if (args[0] == "mainList"){
+            return msg.channel.send({embeds: [em
+                .setDescription("You cannot delete the default list")
+                .setColor("DARK_BUT_NOT_BLACK")
+                .setFooter(`Command called by : ${msg.author.username}`)]});
         }
 
         let name = args[0];
         const resp = await requestDB("deletelist", msg, name);
         if (resp) {
             return msg.channel.send({embeds: [em
-                .setTitle("Delete List")
                 .setDescription(resp)
                 .setColor("AQUA")
                 .setFooter(`Command : ${prefix}deletelist`)
