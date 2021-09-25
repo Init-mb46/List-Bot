@@ -26,6 +26,12 @@ async function makeEmbed(title, desc) {
 
 client.on("ready", async () =>{
     console.log(`Bot logged in as ${client.user.username} on ${client.guilds.cache.size} servers.`);
+    try {
+        client.user.setActivity(`List creation : ${prefix}help`, {type: "PLAYING"});
+        client.user.setStatus("idle");
+    } catch (e) {
+        console.error(e);
+    }
 })
 
 client.on("messageCreate", async msg => {
@@ -39,7 +45,6 @@ client.on("messageCreate", async msg => {
     try {
         if (!actualCommand) {
             let matched = false;
-            let cmdName;
             for(const [name, command] of client.commands.entries()) {
                 command.data.aliases.forEach(v => cmd == v ? matched = true : "");
                 if (matched) {
