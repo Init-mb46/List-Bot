@@ -19,13 +19,9 @@ module.exports = {
             return msg.channel.send({embeds: [embed.setDescription("Command failed: Please enter a name for the new list!")]});
         }
         let name = args[0];
-        const resp = await requestDB("newlist", msg.author.id, name);
-        if (!resp) {
-            return msg.channel.send({embeds: [embed.setDescription(`New list created with the name: ${name}!`)]});
-        } else {
-            return msg.channel.send({embeds: [embed.setDescription(resp)]});
-        }
+        const resp = await requestDB("newlist", msg, name);
         
+        return resp ? msg.channel.send({embeds: [embed.setDescription(resp)]}) : msg.channel.send({embeds: [embed.setDescription(`There may have been an error in creating list \"${name}\"`)]}) ;
     }
 }
 

@@ -20,7 +20,7 @@ async function parseMessage(msg) {
 }
 
 async function makeEmbed(title, desc) {
-    let embed = new Discord.MessageEmbed()
+    let embed = new MessageEmbed()
     return embed.setTitle(title).setDescription(desc);
 }
 
@@ -49,7 +49,7 @@ client.on("messageCreate", async msg => {
                 }
             }
 
-            await msg.reply({embeds: [await makeEmbed("Command not found", `Type ${pref}help for a list of commands.`)]});
+            await msg.reply({embeds: [await makeEmbed("Command not found", `Type ${prefix}help for a list of commands.`)]});
             return;
         }
         
