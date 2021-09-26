@@ -45,9 +45,10 @@ module.exports = {
                 if (commands.has(arg.toLowerCase())) {
                     // command specified exists
                     let cmd = commands.get(arg.toLowerCase());
-                    let param =  cmd.data.params ? "- parameters: " + cmd.data.params : "";
+                    let param =  cmd.data.params ? " - parameters - " + cmd.data.params : "";
                     embed.setTitle(cmd.data.name + param)
                         .setDescription(cmd.data.description)
+                        .addField("Aliases", cmd.data.aliases.join(", "))
                         .setFooter("");
                 } else {
                     embed.setTitle("Command does not exist")
@@ -57,8 +58,7 @@ module.exports = {
             } else {
                 arg = arg <= pages.length && arg >= 1 ? arg : 1
                 let page = pages[arg-1];
-                embed.setDescription(`Commands on page ${arg}`)
-                    .setFooter(`Page ${arg} of ${pages.length}`);
+                embed.setFooter(`Page ${arg} of ${pages.length}`);
                 page.forEach(cmd => {
                     let param =  cmd.data.params ? "- parameters: " + cmd.data.params : "";
                     embed.addField(cmd.data.name + param, cmd.data.description)

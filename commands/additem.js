@@ -12,7 +12,7 @@ module.exports = {
     }, 
     async execute(msg, args) {
         const em = new MessageEmbed()
-            .setTitle("Add item to a list");
+            .setTitle("Add Item to a List");
         if (args.length < 1) {
             return msg.channel.send({embeds: [em
                 .setDescription("Please enter the list you would like to add the item to")

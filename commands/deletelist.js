@@ -11,7 +11,7 @@ module.exports = {
     },
     async execute(msg, args) {
         const em = new MessageEmbed()
-            .setTitle("Delte List");
+            .setTitle("Delete List");
         if (args.length < 1) {
             return msg.channel.send({embeds: [em
                 .setDescription("Please enter the name of the list you would like to delete")

@@ -2,7 +2,6 @@ const {MessageEmbed} = require("discord.js");
 const {listify, pagify} = require("../functions.js");
 const {requestDB} = require("../mongoDBfunctions");
 const {prefix} = require("../config.json");
-const { cpSync } = require("fs");
 
 module.exports = {
     data: {
@@ -43,11 +42,11 @@ module.exports = {
         const em = new MessageEmbed()
             .setTitle("All of Your Lists")
             .setDescription(`If you have more than 5 lists, use page numbers after the command to navigate to the right page. You have **${totalLists}** lists!`)
-            .setColor("Aqua")
+            .setColor("AQUA")
             .setFooter(`Page ${page} of ${totalPages}`);
             
         pages[page-1].forEach(listName => {
-            em.addField(`\"${listName}\"`,`Length of list: ${Object.keys(lists[listName]).length}`)
+            em.addField(`\"${listName}\"`,`Entries: ${Object.keys(lists[listName]).length}`)
         })
         return await msg.channel.send({embeds: [em]});
     }

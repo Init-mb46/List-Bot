@@ -16,7 +16,7 @@ module.exports = {
             .setColor("AQUA");
         
         if (args.length < 1) {
-            return msg.channel.send({embeds: [embed.setDescription("Command failed: Please enter a name for the new list!")]});
+            return msg.channel.send({embeds: [embed.setDescription("Please enter a name for the new list!")]});
         }
         let name = args[0];
         const resp = await requestDB("newlist", msg, name);
