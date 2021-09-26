@@ -13,8 +13,7 @@
   "author": "magicbrave46",
   "license": "ISC",
   "dependencies": {
-    "discord": "^0.8.2",
-    "js": "^0.1.0",
+    "discord.js": "^13.1.0",
     "mongodb": "^4.1.2"
   }
 }
