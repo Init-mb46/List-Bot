@@ -7,7 +7,7 @@ module.exports = {
     data: {
         name: "getlists",
         description: "returns all the lists that you have created",
-        params: "(optional) page number",
+        params: "optional (page)",
         aliases: ["getl", "gl", "glists", "getlis"]
     },
     async execute(msg, args) {
