@@ -46,7 +46,7 @@ module.exports = {
 
             listPages[page - 1].forEach(itemName => {
                 const value = listObj[itemName];
-                em.addField(`\"${itemName}\"  -  ${value.length} characters`, value);
+                em.addField(`\"${itemName}\"`, value);
             })
 
             return msg.channel.send({embeds: [em.setDescription(`Listing items for list \"${name}\"`)
