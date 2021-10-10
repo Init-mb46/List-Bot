@@ -22,14 +22,6 @@ async function awaitForMessage(msg) {
         })
 }
 
-async function getTimeoutEmbed(msg,desc) {
-    return new MessageEmbed()
-        .setTitle("You did not respond in time")
-        .setColor("DARK_BUT_NOT_BLACK")
-        .setFooter(`Command called by: ${msg.author.username}`)
-        .setDescription(desc);
-}
-
 //helpers
 async function checkUser(client, msg, id) {
     const x = await client.db(dbName).collection(colName).findOne({_id: id});
@@ -37,8 +29,8 @@ async function checkUser(client, msg, id) {
         //user not exists
         await client.db(dbName).collection(colName).insertOne({_id: id, name: msg.author.username, lists: {mainList: {}}});
         return;
-    } else if (!x.name) {
-        //user name not exists
+    } else if (!x.name || x.name != msg.author.username) {
+        //user name not exists or doesnt match current name
         await client.db(dbName).collection(colName).updateOne({_id: id}, {$set: {name: msg.author.username}}, {$upsert: true});
     }
 }
