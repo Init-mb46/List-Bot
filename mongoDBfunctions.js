@@ -14,7 +14,7 @@ const MAX_VALUE_LENGTH = 150;
 
 //useful
 async function awaitForMessage(msg) {
-    return await msg.channel.awaitMessages({filer:  m => m.author.id === msg.author.id, max: 1, time: 30000, errors: 'time'})
+    return await msg.channel.awaitMessages({filer:  m => !m.author.bot && m.author.id === msg.author.id, max: 1, time: 30000, errors: 'time'})
         .then(message => {
             return message.first().content;
         }).catch(c => {
